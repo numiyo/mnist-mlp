@@ -1,0 +1,21 @@
+# 数据集：MNIST 原始文件约 63 MB，由 torchvision 自动下载，不入库
+data/
+
+# Python 缓存与编译产物
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# 编辑器与系统文件
+.idea/
+.vscode/
+Thumbs.db
+desktop.ini
+
+# Word 文档（全部忽略，不单独列出任何文件）
+*.doc
+*.docx
+~$*
+
+# 其他临时文件
+*.tmp
