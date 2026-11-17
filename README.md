@@ -46,7 +46,7 @@ DPLN_HW/
 | 项目 | 配置 |
 | --- | --- |
 | 操作系统 | Windows 10/11 64 位 |
-| Python | 3.9.25（Anaconda，环境名 `env(举例)`） |
+| Python | 3.9.25（Anaconda，虚拟环境名 `env`，示例） |
 | PyTorch | 1.12.0 + cu113 |
 | torchvision | 0.13.0 + cu113 |
 | 其他 | matplotlib、numpy |
@@ -55,8 +55,8 @@ DPLN_HW/
 环境已配置好，直接运行即可。若换一台电脑，可用以下命令创建环境：
 
 ```bash
-conda create -n DL python=3.9
-conda activate DL
+conda create -n env python=3.9
+conda activate env
 pip install -r requirements.txt
 # 如需 GPU 版 PyTorch，请按官网命令安装对应 CUDA 版本
 ```
@@ -66,7 +66,7 @@ pip install -r requirements.txt
 ## 3. 快速开始
 
 ```bash
-# 激活环境（本机已有 env 环境）
+# 激活环境（示例环境名为 env）
 conda activate env
 
 # 训练 20 轮并生成全部结果（首次运行会自动下载 MNIST）
@@ -164,7 +164,7 @@ MNIST 每张图片是 28×28 的灰度图，共 10 个类别（数字 0~9）。
 
 ## 6. 实验步骤
 
-1. **配置环境**：使用 Anaconda 的 `env` 环境（Python 3.9 + PyTorch 1.12 + torchvision 0.13），确认 `torch.cuda.is_available()` 为 True。
+1. **配置环境**：使用 Anaconda 的 `env`（示例）环境（Python 3.9 + PyTorch 1.12 + torchvision 0.13），确认 `torch.cuda.is_available()` 为 True。
 2. **准备数据**：用 `torchvision.datasets.MNIST` 下载并加载数据集，`ToTensor` + `Normalize(0.1307, 0.3081)` 预处理；将 60000 张训练图按 5:1 划分为训练集与验证集，用 `DataLoader` 以 batch_size=64 批量读取，训练集打乱。
 3. **搭建模型**：继承 `nn.Module` 定义三层全连接网络 784→256→128→10，隐藏层后接 ReLU，并在 `forward` 中依次完成展平、两次"全连接+激活"和输出层计算。
 4. **设置训练要素**：损失函数用交叉熵 `CrossEntropyLoss`，优化器用 Adam（lr=1e-3），batch_size=64，共训练 20 轮。
